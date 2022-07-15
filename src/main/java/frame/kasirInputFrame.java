@@ -70,7 +70,7 @@ public class kasirInputFrame extends JFrame{
                     ps.executeUpdate();
                     dispose();
                 } else {
-                    cekSQL = "SELECT * FROM apotik WHERE nama_obat=? AND harga=? AND jumlah=? AND id_obat!=?";
+                    cekSQL = "SELECT * FROM obat WHERE nama_obat=? AND harga=? AND jumlah=? AND id_obat!=?";
                     ps = c.prepareStatement(cekSQL);
                     ps.setString(1, nama_obat);
                     ps.setString(2, jumlah);

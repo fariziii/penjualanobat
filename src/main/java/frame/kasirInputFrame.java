@@ -58,7 +58,7 @@ public class kasirInputFrame extends JFrame{
                         );
                         return;
                     }
-                    String insertSQL = "INSERT INTO apotik (id_obat,nama_obat,harga,jumlah) VALUES (NULL, ?, ?, ?)";
+                    String insertSQL = "INSERT INTO obat (id_obat,nama_obat,harga,jumlah) VALUES (NULL, ?, ?, ?)";
                     insertSQL = "INSERT INTO `obat` (`id_obat`, `nama_obat`, `harga`, `jumlah`) VALUES (NULL, ?)";
                     insertSQL = "INSERT INTO `obat` VALUES (NULL, ?)";
                     insertSQL = "INSERT INTO obat (nama_obat,harga,jumlah) VALUES (?)";

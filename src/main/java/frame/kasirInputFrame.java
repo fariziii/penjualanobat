@@ -12,14 +12,14 @@ public class kasirInputFrame extends JFrame{
     private JPanel mainPanel;
     private JTextField idTextField;
     private JTextField namaTextField;
+    private JTextField jumlahTextField;
     private JButton simpanButton;
     private JButton batalButton;
     private int id_obat;
     private JPanel buttonPanel;
-    private JLabel kode_pk;
-    private JLabel kode_merk;
+    private JLabel jumlahLabel;
+    private JLabel hargaLabel;
     private JTextField hargaTextField;
-    private JTextField jumlahTextField;
 
     public kasirInputFrame(){
         batalButton.addActionListener(e -> {
@@ -45,7 +45,7 @@ public class kasirInputFrame extends JFrame{
                 String cekSQL;
                 if (this.id_obat == 0) { //jika TAMBAH
 
-                    cekSQL = "SELECT * FROM apotik WHERE nama_obat=?";
+                    cekSQL = "SELECT * FROM obat WHERE nama_obat=?";
                     ps = c.prepareStatement(cekSQL);
                     ps.setString(1, nama_obat);
                     ResultSet rs = ps.executeQuery();
@@ -59,10 +59,10 @@ public class kasirInputFrame extends JFrame{
                         return;
                     }
                     String insertSQL = "INSERT INTO apotik (id_obat,nama_obat,harga,jumlah) VALUES (NULL, ?, ?, ?)";
-                    insertSQL = "INSERT INTO `apotik` (`id_obat`, `nama_obat`, `harga`, `jumlah`) VALUES (NULL, ?)";
-                    insertSQL = "INSERT INTO `apotik` VALUES (NULL, ?)";
-                    insertSQL = "INSERT INTO apotik (nama_obat,harga,jumlah) VALUES (?)";
-                    insertSQL = "INSERT INTO apotik SET nama_obat=?, harga=?, jumlah=?";
+                    insertSQL = "INSERT INTO `obat` (`id_obat`, `nama_obat`, `harga`, `jumlah`) VALUES (NULL, ?)";
+                    insertSQL = "INSERT INTO `obat` VALUES (NULL, ?)";
+                    insertSQL = "INSERT INTO obat (nama_obat,harga,jumlah) VALUES (?)";
+                    insertSQL = "INSERT INTO obat SET nama_obat=?, harga=?, jumlah=?";
                     ps = c.prepareStatement(insertSQL);
                     ps.setString(1, nama_obat);
                     ps.setString(2, jumlah);
@@ -86,7 +86,7 @@ public class kasirInputFrame extends JFrame{
                         );
                         return;
                     }
-                    String updateSQL = "UPDATE kasir SET nama_obat=?,harga=?, jumlah=? WHERE id_obat=?";
+                    String updateSQL = "UPDATE obat SET nama_obat=?,harga=?, jumlah=? WHERE id_obat=?";
                     ps = c.prepareStatement(updateSQL);
                     ps.setString(1, nama_obat);
                     ps.setString(2, jumlah);

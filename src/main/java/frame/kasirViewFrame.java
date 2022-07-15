@@ -56,7 +56,7 @@ public class kasirViewFrame extends JFrame{
 
             Connection c = koneksi.getConnection();
             String keyword = "%" + cariTextField.getText() + "%";
-            String searchSQL = "SELECT * FROM apotik WHERE id like ?";
+            String searchSQL = "SELECT * FROM obat WHERE id_obat like ?";
             try {
                 PreparedStatement ps = c.prepareStatement(searchSQL);
                 ps.setString(1, keyword);
@@ -88,7 +88,7 @@ public class kasirViewFrame extends JFrame{
                 TableModel tm = viewTable.getModel();
                 int id = Integer.parseInt(tm.getValueAt(barisTerpilih, 0).toString());
                 Connection c = koneksi.getConnection();
-                String deleteSQL = "DELETE FROM apotik WHERE id = ?";
+                String deleteSQL = "DELETE FROM obat WHERE id_obat = ?";
                 try {
                     PreparedStatement ps = c.prepareStatement(deleteSQL);
                     ps.setInt( 1, id);
@@ -105,11 +105,17 @@ public class kasirViewFrame extends JFrame{
                 return;
             }
             TableModel tm = viewTable.getModel();
-            int id = Integer.parseInt(tm.getValueAt(barisTerpilih,0).toString());
+            int id_obat = Integer.parseInt(tm.getValueAt(barisTerpilih,0).toString());
             kasirInputFrame inputFrame = new kasirInputFrame();
-            inputFrame.setId(id);
+            inputFrame.setId(id_obat);
             inputFrame.isiKomponen();
             inputFrame.setVisible(true);
+        });
+            addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowActivated(WindowEvent e) {
+                isiTable();
+            }
         });
         isiTable();
         init();
@@ -125,7 +131,7 @@ public class kasirViewFrame extends JFrame{
 
     public void isiTable(){
         Connection c = koneksi.getConnection();
-        String selectSQL = "SELECT * FROM apotik";
+        String selectSQL = "SELECT * FROM obat";
 
         try {
             Statement s = c.createStatement();
